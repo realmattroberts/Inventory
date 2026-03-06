@@ -2,16 +2,20 @@ FROM node:20-alpine AS base
 
 # Install dependencies only when needed
 FROM base AS deps
+RUN apk add --no-cache python3 make g++
 WORKDIR /app
 COPY package.json package-lock.json* ./
 RUN npm ci
 
 # Build the application
 FROM base AS builder
+RUN apk add --no-cache python3 make g++
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
+# Create data dir so the db module can initialize during build
+RUN mkdir -p /app/data
 RUN npm run build
 
 # Production image
