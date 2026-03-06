@@ -4,7 +4,7 @@ import { items, inventoryTransactions } from "@/lib/db/schema";
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
-  const { sku, name, quantity, reference, notes, performedBy } = body;
+  const { sku, name, quantity, reference, notes, performedBy, categoryId, costPrice, location, description } = body;
 
   if (!sku || !name || !quantity || quantity <= 0) {
     return NextResponse.json(
@@ -18,17 +18,19 @@ export async function POST(request: NextRequest) {
   let newItemId: number | undefined;
 
   const runTransaction = db.$client.transaction(() => {
-    // Create the new item with quantity and no cost (user can fill in later)
+    // Create the new item with quantity and optional fields from review
     const result = db
       .insert(items)
       .values({
         sku,
         name,
-        description: `Auto-created from packing slip`,
+        description: description || `Auto-created from packing slip`,
+        categoryId: categoryId || null,
         quantity,
         minQuantity: 0,
         price: null,
-        costPrice: null,
+        costPrice: costPrice || null,
+        location: location || null,
         createdAt: now,
         updatedAt: now,
       })
