@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node --version)",
+      "Bash(npm --version)",
+      "Bash(npx --version)",
+      "Bash(npm view next version)",
+      "Bash(npm view better-sqlite3 version)",
+      "Bash(npm view @shadcn/ui version)",
+      "Bash(npm view prisma version)",
+      "Bash(npm view drizzle-orm version)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --turbopack --use-npm)",
+      "Bash(npm install better-sqlite3 drizzle-orm recharts)",
+      "Bash(npm install -D drizzle-kit @types/better-sqlite3)",
+      "Bash(npx shadcn@latest init -d --base-color neutral --css-variables)",
+      "Bash(npx shadcn@latest add button card input label table badge dialog separator dropdown-menu select textarea popover command sonner -y)",
+      "Bash(npm run db:seed)",
+      "Bash(npm run build)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(where node)",
+      "Bash(netstat -ano)",
+      "Bash(findstr :3000)",
+      "Bash(del datainventory.db)",
+      "Bash(node -e \"const fs = require\\(''fs''\\); try { fs.unlinkSync\\(''data/inventory.db''\\); console.log\\(''deleted''\\); } catch\\(e\\) { console.log\\(e.message\\); }\")",
+      "Bash(node -e \"const fs = require\\(''fs''\\); fs.rmSync\\(''.next'', { recursive: true, force: true }\\); console.log\\(''.next deleted''\\);\")",
+      "Bash(git init)",
+      "Bash(git add .)"
+    ]
+  }
+}
